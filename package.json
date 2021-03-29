@@ -1,0 +1,39 @@
+{
+  "name": "wwt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontity project",
+  "keywords": [
+    "frontity"
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "dev": "frontity dev",
+    "build": "frontity build",
+    "serve": "frontity serve"
+  },
+  "prettier": {},
+  "dependencies": {
+    "@frontity/core": "^1.11.0",
+    "@frontity/html2react": "^1.6.1",
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "@frontity/tiny-router": "^1.4.0",
+    "@frontity/wp-source": "^1.11.2",
+    "babel-plugin-macros": "^3.0.1",
+    "frontity": "^1.14.2",
+    "gsap": "^3.6.0",
+    "react-id-swiper": "^4.0.0",
+    "react-slick": "^0.28.1",
+    "react-spinners": "^0.10.6",
+    "react-spring": "^8.0.27",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^6.5.0",
+    "tailwind.macro": "^1.0.0-alpha.10",
+    "tailwindcss": "^2.0.4",
+    "twin.macro": "^2.3.0",
+    "wwt-theme": "file:packages/wwt-theme"
+  }
+}
