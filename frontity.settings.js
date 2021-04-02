@@ -15,7 +15,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "http://wwt.local",
+          "url": "https://davidc213.sg-host.com",
           "homepage": "/home",
           "postTypes": [
             {
