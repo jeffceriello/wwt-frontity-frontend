@@ -3,12 +3,11 @@ import { connect, styled } from "frontity";
 import NavItems from './navItems';
 import tw from "twin.macro";
 
-const Nav = ({ state }) => {
+const Nav = ({ state, colour }) => {
     const items = state.source.get(`/menu/${state.theme.headerMenu}/`).items;
-    // console.log(items);
     return (
         <NavWrapper>
-            <NavItems items={items} />
+            <NavItems items={items} colour={colour} />
         </NavWrapper>
     );
 };

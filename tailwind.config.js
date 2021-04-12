@@ -8,8 +8,9 @@ module.exports = {
     screens: {
       sm: '640px',
       md: '768px',
-      lg: '1024px',
-      xl: '1280px',
+      lg: '992px',
+      xl: '1200px',
+      '1xl': '1400px',
       '2xl': '1600px',
     },
     colors: {
@@ -18,9 +19,9 @@ module.exports = {
 
       black: colors.black,
       white: colors.white,
-      gray: colors.coolGray,
+      gray: '#F5F5F5',
       red: colors.red,
-      yellow: colors.amber,
+      yellow: '#EEFF34',
       green: '#2EC4B6',
       blue: '#133C55',
       indigo: colors.indigo,
@@ -63,6 +64,8 @@ module.exports = {
       72: '18rem',
       80: '20rem',
       96: '24rem',
+      100: '26rem',
+      110: '34rem'
     },
     animation: {
       none: 'none',
@@ -99,6 +102,9 @@ module.exports = {
       auto: 'auto',
       cover: 'cover',
       contain: 'contain',
+      '100': '100%',
+      '105': '105%',
+      '110': '110%'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -135,7 +141,11 @@ module.exports = {
     },
     container: {
       center: true,
-      padding: "6rem",
+      padding: {
+        DEFAULT: "2rem",
+        // xl: "4rem",
+        // '1xl': "6rem"
+      },
       width: '100%'
     },
     cursor: {
@@ -443,6 +453,8 @@ module.exports = {
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
+      half: '50vh',
+      '70': '70vh'
     }),
     maxWidth: (theme, { breakpoints }) => ({
       none: 'none',

@@ -2,9 +2,10 @@ import React from 'react';
 import { connect, styled } from 'frontity';
 import tw from "twin.macro";
 
-const H1 = ({ colour, title }) => {
+const H1 = ({ colour, title, libraries }) => {
+    const Html2React = libraries.html2react.Component;
     return (
-        <HeroH1 colour={colour}>{title}</HeroH1>
+        <HeroH1 colour={colour}><Html2React html={title} /></HeroH1>
     );
 };
 

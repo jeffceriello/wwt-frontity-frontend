@@ -5,7 +5,7 @@ import Link from '../UI/link';
 import Button from '../UI/button';
 import tw from "twin.macro";
 
-const NavItems = ({ items, isButton, state, libraries, colour }) => {
+const NavItems = ({ items, isButton, state, libraries, colour, isFixed }) => {
     return (
         <>
             {items.map((item) => {
@@ -16,7 +16,7 @@ const NavItems = ({ items, isButton, state, libraries, colour }) => {
                 return (
                     <NavItem key={item.ID} isSelected={isCurrentPage}>
                         {isButton ?
-                            <Button link={link} children={name} />
+                            <Button link={link} children={name} isFixed={isFixed} />
                         :
                             <Link link={link} aria-current={isCurrentPage ? "page" : null} className="menu--nav-item" children={name} colour={colour} />
                         }

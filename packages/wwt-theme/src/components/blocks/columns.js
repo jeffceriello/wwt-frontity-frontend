@@ -21,7 +21,7 @@ const Columns = ({ content, libraries }) => {
                         <ColumnContent>
                             {small_heading && <Heading>{small_heading}</Heading>}
                             {copy && <Html2React html={copy} />}
-                            {linkUrl && <ArrowLink link={linkUrl} text={link_text} className="arrow-green" />}
+                            {link_text && <ArrowLink link={linkUrl} text={link_text} className="arrow-green" />}
                         </ColumnContent>
                     </ColumnBlock>
                 );
@@ -33,7 +33,7 @@ const Columns = ({ content, libraries }) => {
 export default connect(Columns);
 
 const ColumnsWrapper = styled.div`
-    ${tw`container flex flex-wrap md:flex-nowrap md:space-x-40 py-10 md:py-20`}
+    ${tw`container flex flex-wrap md:flex-nowrap md:space-x-20 2xl:space-x-40 py-10 md:py-20 z-10`}
 `;
 
 const ColumnBlock = styled.div`

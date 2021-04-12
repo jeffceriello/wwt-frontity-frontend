@@ -4,6 +4,7 @@ import NavItems from '../header/navItems';
 import Button from '../UI/button';
 import Social from './social';
 import tw from "twin.macro";
+import { theme } from '../../../../../tailwind.config';
 
 const Footer = ({ state, libraries }) => {
     const options = state.source.get("theme-wwt-settings");
@@ -18,11 +19,11 @@ const Footer = ({ state, libraries }) => {
         <FooterWrapper>
             <FooterContainer>
                 <FooterRow tw="mb-10">
-                    <div tw="md:w-3/5">
+                    <div tw="md:w-3/4 2xl:w-3/5">
                         <Html2React html={copy} />
                     </div>
                     <div tw="md:w-1/4 my-10 md:mb-20">
-                        <Button link={linkUrl}>{link_text}</Button>
+                        <Button link={linkUrl} hoverBg={white}>{link_text}</Button>
                     </div>
                 </FooterRow>
                 <FooterRow>
@@ -32,7 +33,6 @@ const Footer = ({ state, libraries }) => {
                                 <NavItems items={items} colour={white} />
                                 <NavItems items={connect} colour={white} />
                             </NavWrapper>
-                            {/* <Connect colour={white} className="footer--nav-wrapper" /> */}
                         </div>
                         <div tw="md:w-3/5 2xl:w-1/2">
                             <Social colour={white} className="footer--nav-wrapper" />

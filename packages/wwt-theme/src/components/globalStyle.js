@@ -33,14 +33,21 @@ const styleWithFont = css`
         --colour-black-01: #000000;
         --colour-white-01: #ffffff;
         --colour-green-01: #2EC4B6;
+        --colour-blue-01: #133C55;
         --colour-grey-01:  #737373;
         --break-small: 768px;
     }
     body {
+        cursor: default;
         margin: 0;
         font-family: var(--font-regular);
         -webkit-font-smoothing:antialiased;
 	    -moz-osx-font-smoothing:grayscale;
+    }
+    #root {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
     figure {
         margin: 0;
@@ -102,6 +109,9 @@ const styleWithFont = css`
     .arrow-white {
         background-color: var(--colour-white-01);
     }
+    .arrow-blue {
+        background-color: var(--colour-blue-01);
+    }
     .menu--nav-item {
         position: relative;
         &:before {
@@ -111,7 +121,7 @@ const styleWithFont = css`
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--colour-black-01);
+            background-color: currentcolor;
             transition-property: all;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 300ms;

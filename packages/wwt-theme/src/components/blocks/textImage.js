@@ -12,7 +12,7 @@ const TextImage = ({ content, data, libraries }) => {
             {copy && 
                 <ColumnBlock tw="md:pr-60">
                     <Html2React html={copy} />
-                    {linkUrl && <ArrowLink link={linkUrl} text={link_text} className="arrow-green" />}
+                    {link_text && <ArrowLink link={linkUrl} text={link_text} className="arrow-green" />}
                 </ColumnBlock>
             }
             {image &&
@@ -27,7 +27,7 @@ const TextImage = ({ content, data, libraries }) => {
 export default connect(TextImage);
 
 const TextImageWrapper = tw.div`
-    container flex flex-wrap items-center md:flex-nowrap py-10 md:py-20
+    container flex flex-wrap items-center md:flex-nowrap py-10 md:py-20 z-20
 `;
 
 const ColumnBlock = styled.div`

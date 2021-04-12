@@ -1,42 +1,80 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { connect, styled } from "frontity";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "@frontity/components/link";
+import Link from "../UI/link";
 import Nav from "./nav";
 import Connect from "./connect";
 import tw from "twin.macro";
 
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
-const Header = ({ state }) => {
-    const header = useRef();
+const Header = ({ state, colour, data }) => {
+    const header = useRef(null);
+    const [ navColour, setNavColour ] = useState(colour);
+    const [ logoColour, setLogoColour ] = useState(colour);
+    const [ logo, setLogo ] = useState(null);
     const options = state.source.get("theme-wwt-settings");
-    const { white } = state.theme.colours;
+
+    const { black, white } = state.theme.colours;
+
+    const colourUpdate = (col) => {
+        setNavColour(col);
+        setLogoColour(col);
+    };
+
+    const logoUpdate = () => {
+        if (logoColour === white) {
+            setLogo(options.acf.logo_light);
+        }
+        if (logoColour === black) {
+            setLogo(options.acf.logo_dark);
+        }
+    };
 
     useEffect(() => {
+        logoUpdate(colour);
+    }, [logoColour])
+
+    useEffect(() => {
+        colourUpdate(colour);
+        gsap.set(header.current, {clearProps: true});
         gsap.to(header.current, {
             backgroundColor: 'rgba(255, 255, 255, 1)',
             duration: .3,
             scrollTrigger: {
+                id: "header-ref",
                 trigger: header.current,
                 start: 0,
                 toggleActions: "play none none reverse",
-                scrub: false
+                scrub: false,
+                onEnter: () => {
+                    colourUpdate(black);
+                },
+                onLeaveBack: () => {
+                    colourUpdate(colour);
+                }
             }
         });
-    }, []);
+        
+        return () => {
+            const headerScrollAnimation = ScrollTrigger.getById(`header-ref`);
+			if (headerScrollAnimation) {
+				headerScrollAnimation.kill(true);
+			}
+        }
+    }, [colour]);
 
     return (
         <HeaderWrapper ref={header}>
             <Figure>
                 <Link link="/">
-                    <img src={options.acf.logo_dark} alt="WWT Logo" width="165" />
+                    <img src={logo} alt="WWT Logo" width="165" />
                 </Link>
             </Figure>
-            <Nav />
-            <Connect isButton={true} colour={white} />
+            <Nav colour={navColour} />
+            <Connect isButton={true} colour={white} isFixed={true} />
         </HeaderWrapper>
     );
 };

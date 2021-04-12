@@ -6,9 +6,9 @@ const Logos = ({ content }) => {
     const logos = content.logos;
     return (
         <LogosWrapper>
-            {logos.map((logo, index) => {
+            {logos.map((logo, i) => {
                 return (
-                    <figure key={index}>
+                    <figure key={i.toString()}>
                         <img src={logo} />
                     </figure>
                 );

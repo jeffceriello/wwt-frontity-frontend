@@ -3,13 +3,14 @@ import { connect } from 'frontity';
 import Link from './link';
 import tw, { styled } from "twin.macro";
 import arrow from '../../assets/img/arrow.svg';
+import arrow2 from '../../assets/img/arrow-white.svg';
 
-const ArrowLink = ({ link, text, className, colour }) => {
+const ArrowLink = ({ link, text, className, colour, arrowWhite }) => {
     return (
         <LinkWrapper link={link} colour={colour}>
             <span>{text}</span>
             <ArrowWrapper className={className}>
-                <img src={arrow} alt="Arrow" css={tw`pl-0.5 pb-0.5`} />
+                <img src={arrowWhite ? arrow2 : arrow} alt="Arrow" css={tw`pl-0.5 pb-0.5`} />
             </ArrowWrapper>
         </LinkWrapper>
     );

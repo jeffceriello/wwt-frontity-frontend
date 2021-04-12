@@ -7,40 +7,45 @@ import { connect, Global, styled } from "frontity";
 // import { useTransition, animated } from "react-spring";
 import Switch from "@frontity/components/switch";
 import Layout from './layout/layout';
-// import Loading from './UI/loading';
+import Loading from './UI/loading';
 import tw from "twin.macro";
 
 const Root = ({ state }) => {
+    const { black, white } = state.theme.colours;
+    let headerC = black;
     // const transitions = useTransition(state.router.link, link => link, {
     //     from: { opacity: 0 },
     //     enter: { opacity: 1 },
     //     leave: { opacity: 0 }
-    // });
+    // }); 
     const data = state.source.get(state.router.link);
+    if (data.link === "/about/" || data.link === "/approach/") {
+        headerC = white;
+    }
     return (
         <>
             <Global styles={globalStyle}/>
-            {data.isHome && <Global styles={swiperStyle} />}
-            <Header />
-            <Main>
+            <Global styles={swiperStyle} />
+            <Header colour={headerC} data={data} />
+            
             {/* {transitions.map(({ item, props, key }) => {
-                const data = state.source.get(item);
                 return (
                     <animated.div key={key} style={props}>
                         <Absolute> */}
-                            <Switch>
-                                {/* <Loading when={data.isFetching} /> */}
-                                <Layout when={data.isPage} />
-                                <div when={data.isArchive}>This is a list</div>
-                                <div when={data.isPost}>This is a post</div>
-                                <div when={data.is404}>Not found</div>
-                            </Switch>
+                            <Main>
+                                <Switch>
+                                    <Loading when={data.isFetching} />
+                                    <Layout when={data.isPage} />
+                                    <div when={data.isArchive}>This is a list</div>
+                                    <div when={data.isPost}>This is a post</div>
+                                    <div when={data.is404}>Not found</div>
+                                </Switch>
+                            </Main>
+                        <Footer/>
                         {/* </Absolute>
                     </animated.div>
                 );
             })} */}
-            </Main>
-            <Footer/>
         </>
     )
 };
@@ -48,7 +53,7 @@ const Root = ({ state }) => {
 export default connect(Root);
 
 const Main = styled.main`
-    ${tw`flex flex-wrap overflow-x-hidden`};
+    ${tw`flex flex-wrap overflow-x-hidden flex-grow`};
 `;
 
 const Absolute = styled.div`

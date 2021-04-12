@@ -9,13 +9,13 @@ const settings = {
   },
   "packages": [
     {
-      "name": "wwt-theme",
+      "name": "wwt-theme"
     },
     {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://davidc213.sg-host.com",
+          "url": "http://wwt.local",
           "homepage": "/home",
           "postTypes": [
             {
@@ -28,7 +28,8 @@ const settings = {
       }
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
+    "@frontity/html2react",
+    "frontity-contact-form-7"
   ]
 };
 

@@ -4,14 +4,9 @@ import ArrowLink from '../UI/arrowLink';
 import Link from '../UI/link';
 import tw from "twin.macro";
 
-const CaseStudies = ({ state, content, actions, libraries }) => {
+const CaseStudies = ({ state, content, libraries }) => {
     const caseStudies = content.case_studies;
     const { white } = state.theme.colours;
-
-    // useEffect(() => {
-    //     actions.source.fetch("/case_studies");
-    // }, []);
-    // state.source.get("/case_studies/");
 
     return (
         <>
@@ -21,6 +16,7 @@ const CaseStudies = ({ state, content, actions, libraries }) => {
             </CaseStudiesHeadings>
             <CaseStudiesWrapper>
                 {caseStudies && caseStudies.map((caseStudy, i) => {
+                    const Html2React = libraries.html2react.Component;
                     const caseStudyType = caseStudy.post_type;
                     const caseStudyData = state.source[caseStudyType][caseStudy.ID];
                     const title = caseStudyData.title.rendered;
@@ -30,11 +26,12 @@ const CaseStudies = ({ state, content, actions, libraries }) => {
                     const link = libraries.source.normalize(caseStudyData.link);
 
                     return (
-                        <CaseStudy key={i.toString()} bg={featuredImageSource_url} className="square-element">
+                        <CaseStudy key={i.toString()} className="square-element">
+                            <CaseStudyBg className="case-study-bg" bg={featuredImageSource_url} />
                             <CaseStudyInner>
                                 <div>
                                     <CaseStudyClient><b>{client}</b></CaseStudyClient>
-                                    <Link link={link}><CaseStudyTitle>{title}</CaseStudyTitle></Link>
+                                    <Link link={link}><CaseStudyTitle><Html2React html={title} /></CaseStudyTitle></Link>
                                 </div>
                                 <div>
                                     {link && <ArrowLink link={link} text="View Case Study" className="arrow-white" colour={white} />}
@@ -51,7 +48,7 @@ const CaseStudies = ({ state, content, actions, libraries }) => {
 export default connect(CaseStudies);
 
 const CaseStudiesHeadings = tw.div`
-    md:w-3/5 m-auto flex flex-wrap pt-10 md:pt-20 pb-10 flex-col text-center
+    md:w-4/5 2xl:w-3/5 m-auto flex flex-wrap pt-10 md:pt-20 pb-10 flex-col text-center
 `;
 
 const CaseStudiesWrapper = tw.div`
@@ -59,14 +56,17 @@ const CaseStudiesWrapper = tw.div`
 `;
 
 const CaseStudy = styled.div`
-    ${tw`w-full md:w-1/2 bg-no-repeat bg-cover bg-center overflow-hidden hover:scale-105 transition-all duration-500 hover:z-10 transform origin-center`};
+    ${tw`w-full md:w-1/2 overflow-hidden hover:scale-105 transition-all duration-500 hover:z-10 transform origin-center relative`};
+    &:hover {
+        .case-study-bg {
+            ${tw`scale-100`};
+        }
+    }
+`;
+
+const CaseStudyBg = styled.div`
+    ${tw`w-full h-full bg-no-repeat scale-110 bg-cover bg-center transition-all duration-500 transform origin-center absolute top-0 left-0`};
     background-image: url(${props => props.bg})
-    // transition: z-index .5s step-end, transform .4s ease-in-out;
-    // z-index: 0;
-    // &:hover {
-    //     transition: z-index .5s step-start, transform .4s ease-in-out;
-    //     z-index: 1;
-    // }
 `;
 
 const CaseStudyInner = tw.div`
